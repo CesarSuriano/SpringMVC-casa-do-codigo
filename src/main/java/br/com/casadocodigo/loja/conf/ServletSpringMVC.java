@@ -1,4 +1,4 @@
-package conf;
+package br.com.casadocodigo.loja.conf;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -11,7 +11,7 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return null;
+		return new Class[]{AppWebConfiguration.class};
 	}
 
 	@Override
