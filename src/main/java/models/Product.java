@@ -1,5 +1,9 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +17,9 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String title;
+	
+	@ElementCollection
+	private List<Price> prices = new ArrayList<Price>();
 	
 	@Lob
 	private String description;
@@ -41,5 +48,25 @@ public class Product {
 	public void setPages(int pages) {
 		this.pages = pages;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public List<Price> getPrices() {
+		return prices;
+	}
+
+	public void setPrices(List<Price> prices) {
+		this.prices = prices;
+	}
+	
+	
+	
+	
 
 }
