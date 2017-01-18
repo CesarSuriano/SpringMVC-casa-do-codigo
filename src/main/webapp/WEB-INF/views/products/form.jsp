@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -10,7 +11,7 @@ pageEncoding="UTF-8"%>
 <title>Cadastro de produtos</title>
 </head>
 <body>
-	<form method="post" action="/casadocodigo/products">
+	<form action="${spring:mvcUrl("saveProduct").build()}" method="post">
 		<div>
 			<label for="title">Titulo</label> <input type="text" name="title"
 				id="title" />
@@ -56,5 +57,14 @@ pageEncoding="UTF-8"%>
 			<input type="submit" value="Enviar">
 		</div>
 	</form>
+
+	<spring:hasBindErrors name="product">
+		<ul>
+			<c:forEach var="error" items="${errors.allErrors}">
+				<li>${error.code}</li>
+			</c:forEach>
+		</ul>
+	</spring:hasBindErrors>
+
 </body>
 </html>
