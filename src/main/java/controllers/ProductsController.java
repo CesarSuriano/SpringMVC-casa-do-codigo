@@ -23,10 +23,10 @@ import validation.ProductValidator;
 @RequestMapping("/products")
 public class ProductsController {
 
-	@InitBinder
-	protected void initBinder(WebDataBinder binder) {
-		binder.setValidator(new ProductValidator());
-	}
+//	@InitBinder
+//	protected void initBinder(WebDataBinder binder) {
+//		binder.setValidator(new ProductValidator());
+//	}
 
 	@Autowired
 	private ProductDAO productDAO;
@@ -46,7 +46,7 @@ public class ProductsController {
 	public ModelAndView save(@Valid Product product, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
-			return form();
+			return form(product);
 		}
 		productDAO.save(product);
 		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso");
@@ -54,7 +54,7 @@ public class ProductsController {
 	}
 
 	@RequestMapping("/form")
-	public ModelAndView form() {
+	public ModelAndView form(Product product) {
 		ModelAndView modelAndView = new ModelAndView("products/form");
 		modelAndView.addObject("types", BookType.values());
 		return modelAndView;
